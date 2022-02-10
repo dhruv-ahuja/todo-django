@@ -34,3 +34,7 @@ a:any-link {
     background-color: #c3073f;
     color: #1a1a1d;
 }
+
+input[type="text"] {
+    background-color: whitesmoke;
+}
