@@ -8,7 +8,7 @@ class TodoItem(models.Model):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.task
+        return f"Task: {self.task}\nCompleted: {self.completed}"
 
     class Meta:
         indexes = [

@@ -1,0 +1,36 @@
+body {
+  background-color: #1a1a1d;
+  color: #c3073f;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  margin: auto;   
+}
+
+.title {
+    font-size: xx-large;
+}
+
+.todo-form {
+    font-size: large;
+}
+
+a:any-link {
+    color: #c3073f;
+}
+
+.button {
+  background-color: #1a1a1d; 
+  border: 2px solid #c3073f;
+  color: #c3073f;
+  padding: 16px 32px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button:hover{
+    background-color: #c3073f;
+    color: #1a1a1d;
+}
