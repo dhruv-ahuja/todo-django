@@ -1,15 +1,11 @@
-# this file will contain functions interacting with the database
 from pathlib import Path
 import sqlite3
 
 
-class SQLite:
+class ContextManager:
     """
-    Context handler to do away with boiler plate code required when using the
+    Context manager to do away with boiler plate code required when using the
     `sqlite3.Connection` context handler.
-
-    Connects to the sqlite database at the given path, generates and returns
-    the cursor to be used for database operations by the rest of the app.
     """
 
     def __init__(self, path: Path):
