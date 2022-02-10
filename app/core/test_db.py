@@ -1,8 +1,6 @@
 from django.test import TestCase
 from django.utils import timezone
 
-from .database.context_manager import ContextManager
-from .database.helpers import db_path
 from .models import TodoItem
 
 

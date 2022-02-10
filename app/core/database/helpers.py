@@ -26,22 +26,3 @@ def new_todo(task: str, completed: bool = False):
         db.connection.commit()
 
     return result
-
-
-def new_todo_test(task: str, completed: bool = False):
-    """
-    Adds a new ToDo task to the database.
-    """
-    db_path = "./app/db.sqlite3"
-    query = "INSERT INTO core_todoitem (task, added_at, completed) \
-    VALUES (?, ?, ?) RETURNING *;"
-    import datetime
-
-    query_args = (task, datetime.datetime.now(), completed)
-
-    with ContextManager(db_path) as db:
-        db.cursor.execute(query, query_args)
-        result = db.cursor.fetchone()
-        db.connection.commit()
-
-    return result
