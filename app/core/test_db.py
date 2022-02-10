@@ -3,30 +3,20 @@ from django.utils import timezone
 
 from .database.context_manager import ContextManager
 from .database.helpers import db_path
+from .models import TodoItem
 
 
-class HelpersTest(TestCase):
+class TodoItemModelTests(TestCase):
     def test_create_todo_item(self):
         """
-        Test the insertion of a new ToDo task into the database.
+        Test the insertion of a new ToDo task into the mock test database.
         """
-        query = "INSERT INTO core_todoitem (task, added_at, completed) VALUES \
-        (?,?,?) RETURNING *;"
         t = timezone.now()
-        query_args = ("test task 1", t, False)
+        task1 = TodoItem(task="test task 1", added_at=t)
+        task2 = TodoItem(task="test task 2", added_at=t, completed=True)
 
-        with ContextManager(db_path) as db:
-            db.cursor.execute(query, query_args)
-            result = db.cursor.fetchone()
+        self.assertIs(task1.task, "test task 1")
+        self.assertIs(task1.completed, False)
 
-        self.assertEqual("test task 1", result[1])
-        self.assertEqual(False, result[3])
-
-        query_args = ("test task 2", t, True)
-
-        with ContextManager(db_path) as db:
-            db.cursor.execute(query, query_args)
-            result = db.cursor.fetchone()
-
-        self.assertEqual("test task 2", result[1])
-        self.assertEqual(True, result[3])
+        self.assertIs(task2.task, "test task 2")
+        self.assertIs(task2.completed, True)
