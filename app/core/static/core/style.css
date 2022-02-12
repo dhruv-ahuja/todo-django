@@ -3,7 +3,9 @@ body {
   color: #c3073f;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
-  margin: auto;   
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 30px;
 }
 
 .title {
@@ -37,4 +39,33 @@ a:any-link {
 
 input[type="text"] {
     background-color: whitesmoke;
+    margin-bottom: 20px;
+    padding: 4px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.fill-width {
+    flex: 1;
+}
+
+ul li {
+    background-color: #4e4e50;
+    color: #dd1451;
+    cursor: pointer;
+    position: relative;
+    padding: 8px 2px 12px 40px;
+    list-style-type: none;
+    transition: 0.4s;    
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+ul li:hover {
+    background-color: #1a1a1d;
 }
