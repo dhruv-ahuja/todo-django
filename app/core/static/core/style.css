@@ -36,7 +36,7 @@ a:any-link {
   padding: 16px 32px;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 4px 40px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
@@ -97,7 +97,15 @@ ul li:hover {
     background: #23232c;
     color: #4e4e50;
 }
-/* 
-.task-icon {
-    
-} */
+
+
+/* css for the confirm_deletion page */
+.delete-msg {
+    font-size: x-large;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+}
