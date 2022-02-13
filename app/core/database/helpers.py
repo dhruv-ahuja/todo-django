@@ -32,14 +32,12 @@ def get_completed_todos() -> list:
     """
     Fetches all completed ToDos from the database.
     """
-    query = "SELECT task FROM core_todoitem WHERE completed IS TRUE ORDER BY\
+    query = "SELECT id, task FROM core_todoitem WHERE completed IS TRUE ORDER BY\
         datetime(added_at) DESC;"
 
     with ContextManager(db_path) as db:
         db.cursor.execute(query)
         completed_todos = db.cursor.fetchall()
-
-    completed_todos = [task[0] for task in completed_todos]
 
     return completed_todos
 
@@ -48,13 +46,39 @@ def get_pending_todos() -> list:
     """
     Fetches all pending ToDos from the database.
     """
-    query = "SELECT task FROM core_todoitem WHERE completed IS NOT TRUE ORDER BY\
+    query = "SELECT id, task FROM core_todoitem WHERE completed IS NOT TRUE ORDER BY\
         datetime(added_at) DESC;"
 
     with ContextManager(db_path) as db:
         db.cursor.execute(query)
         pending_todos = db.cursor.fetchall()
 
-    pending_todos = [task[0] for task in pending_todos]
-
     return pending_todos
+
+
+def mark_todo_as_completed(pk):
+    """
+    Marks a pending ToDo as completed and updates the database.
+    """
+    query = "UPDATE core_todoitem SET completed = TRUE WHERE id = ?;"
+
+    with ContextManager(db_path) as db:
+        db.cursor.execute(query, (pk,))
+        result = db.cursor.fetchone()
+        db.connection.commit()
+
+    return result
+
+
+def delete_todo(pk):
+    """
+    Deletes a specific ToDo from the database given its ID.
+    """
+    query = "DELETE FROM core_todoitem WHERE ID =? RETURNING *;"
+
+    with ContextManager(db_path) as db:
+        db.cursor.execute(query, (pk,))
+        result = db.cursor.fetchone()
+        db.connection.commit()
+
+    return result
