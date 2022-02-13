@@ -25,6 +25,19 @@ def index(request):
     # approach where we were fetching it only after a post request
     # that meant that the page was nothing more than a form in eyes of the
     # browser from what I understand
-    todos = helpers.get_recently_added_todos()
+    completed_todos = helpers.get_completed_todos()
+    pending_todos = helpers.get_pending_todos()
+    todos = True
 
-    return render(request, "core/index.html", {"todos": todos})
+    if len(completed_todos) == 0 and len(pending_todos) == 0:
+        todos = False
+
+    return render(
+        request,
+        "core/index.html",
+        {
+            "completed_todos": completed_todos,
+            "pending_todos": pending_todos,
+            "todos": todos,
+        },
+    )

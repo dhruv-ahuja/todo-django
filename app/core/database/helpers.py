@@ -28,14 +28,33 @@ def new_todo(task: str, completed: bool = False) -> TodoItem:
     return result
 
 
-def get_recently_added_todos() -> list:
+def get_completed_todos() -> list:
     """
-    Fetches the recent few ToDo tasks from the database.
+    Fetches all completed ToDos from the database.
     """
-    query = "SELECT task, completed FROM core_todoitem ORDER BY datetime(added_at) DESC LIMIT 10;"
+    query = "SELECT task FROM core_todoitem WHERE completed IS TRUE ORDER BY\
+        datetime(added_at) DESC;"
 
     with ContextManager(db_path) as db:
         db.cursor.execute(query)
-        todos = db.cursor.fetchmany(10)
+        completed_todos = db.cursor.fetchall()
 
-    return todos
+    completed_todos = [task[0] for task in completed_todos]
+
+    return completed_todos
+
+
+def get_pending_todos() -> list:
+    """
+    Fetches all pending ToDos from the database.
+    """
+    query = "SELECT task FROM core_todoitem WHERE completed IS NOT TRUE ORDER BY\
+        datetime(added_at) DESC;"
+
+    with ContextManager(db_path) as db:
+        db.cursor.execute(query)
+        pending_todos = db.cursor.fetchall()
+
+    pending_todos = [task[0] for task in pending_todos]
+
+    return pending_todos
