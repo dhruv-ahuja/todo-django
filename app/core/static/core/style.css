@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    display: block;
+}
+
 body {
   background-color: #1a1a1d;
   color: #c3073f;

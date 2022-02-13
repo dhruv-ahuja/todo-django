@@ -41,3 +41,18 @@ def index(request):
             "todos": todos,
         },
     )
+
+
+def complete_todo(request, pk):
+    helpers.mark_todo_as_completed(pk)
+    return redirect("index")
+
+
+def confirm_deletion(request, pk):
+    return render(request, "core/confirm_deletion.html", {"pk": pk})
+
+
+def delete_todo(request, pk):
+    helpers.delete_todo(pk)
+
+    return redirect("index")

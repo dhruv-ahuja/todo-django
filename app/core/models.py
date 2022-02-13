@@ -8,10 +8,12 @@ class TodoItem(models.Model):
     added_at = models.DateTimeField()
 
     def __str__(self):
-        return f"Task: {self.task}\nCompleted: {self.completed}"
+        return self.task
 
     class Meta:
         indexes = [
             models.Index(fields=["completed", "added_at"]),
             models.Index(fields=["added_at"]),
         ]
+
+        # ordering = ["completed"]
