@@ -4,7 +4,8 @@ from .views import *
 
 
 urlpatterns = [
-    path("", TodoList.as_view(), name="todos"),
-    path("create", TodoCreate.as_view(), name="create_task"),
-    path("update/<int:pk>", TodoUpdate.as_view(), name="update_task"),
+    path("", TaskList.as_view(), name="tasks"),
+    path("create", TaskCreate.as_view(), name="create_task"),
+    path("update/<int:pk>", TaskUpdate.as_view(), name="update_task"),
+    path("delete/<int:pk>", TaskDelete.as_view(), name="delete_task"),
 ]
