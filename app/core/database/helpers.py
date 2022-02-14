@@ -4,7 +4,7 @@ from pathlib import Path
 from django.utils import timezone
 
 from .context_manager import ContextManager
-from core.models import TodoItem
+from core.models import Task
 
 # the path to the local database file
 # it is automatically created by django in the project root directory
@@ -12,7 +12,7 @@ from core.models import TodoItem
 db_path = Path(".") / os.environ["DB_NAME"]
 
 
-def new_todo(task: str, completed: bool = False) -> TodoItem:
+def new_todo(task: str, completed: bool = False) -> Task:
     """
     Adds a new ToDo task to the database.
     """
@@ -64,10 +64,18 @@ def mark_todo_as_completed(pk):
 
     with ContextManager(db_path) as db:
         db.cursor.execute(query, (pk,))
-        result = db.cursor.fetchone()
         db.connection.commit()
 
-    return result
+
+def mark_todo_as_pending(pk):
+    """
+    Marks a completed ToDo as pending once again and updates the database.
+    """
+    query = "UPDATE core_todoitem SET completed = FALSE where id = ?;"
+
+    with ContextManager(db_path) as db:
+        db.cursor.execute(query, (id,))
+        db.connection.commit()
 
 
 def delete_todo(pk):
