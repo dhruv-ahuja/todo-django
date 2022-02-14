@@ -1,57 +1,41 @@
 {% extends "core/base.html" %}
 
-{% block title %} ToDo List {% endblock title %}
-
+{% block title %} ToDo List {% endblock %}
 
 {% block content %}
 
-<div class="todo-form">
-    <form method="post">
+<table>
 
-        {% csrf_token %}
+    <tr>
+        <th>Item</th>
+        <th></th>
+        <th></th>
+    </tr>
 
-        <fieldset>
-
-            <div class="flex-container">
-                <input type="text" name="task" id="task" placeholder="Enter a task" class="fill-width" required>
-                <button type="submit" class="button mb-3">Save</button>
-            </div>
-
-        </fieldset>
-
-    </form>
-</div>
-
-
-<p>
     {% if todos %}
-<ul class="list-group choice-container">
-
     {% for task in pending_todos %}
-    <!-- `task.1` acts like `task[1]` here; the first element is the id,
-            the second element is the task itself -->
-    <li class="task">
-        <a href="{% url 'complete_todo' task.0 %}">
-            {{task.1}}
-        </a>
-    </li>
+    <tr>
+
+        <td>{{task.1}}</td>
+        <td><a href="{% url 'complete_todo' task.0 %}">Update</a></td>
+        <td><a href="{% url 'confirm_deletion' task.0 %}">Delete</a></td>
+
+    </tr>
     {% endfor %}
 
     {% for task in completed_todos %}
-    <i><s>
-            <li class="completed-task">
-                <a href="{% url 'confirm_deletion' task.0 %}">{{task.1}}</a>
-            </li>
-    </i></s>
+    <tr>
+        <td>{{task.1}}</td>
+        <td><a href="{% url 'complete_todo' task.0 %}">Update</a></td>
+        <td><a href="{% url 'confirm_deletion' task.0 %}">Delete</a></td>
+    </tr>
     {% endfor %}
 
-</ul>
-{% endif %}
-</p>
+    {% else %}
+    <h3>No items in the list.</h3>
+    {% endif %}
 
-<!-- bootstrap's javascript bundle needed for some functionality -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
 
-{% endblock content %}
+</table>
+
+{% endblock %}
