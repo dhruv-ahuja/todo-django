@@ -14,10 +14,7 @@
 
             <div class="flex-container">
                 <input type="text" name="task" id="task" placeholder="Enter a task" class="fill-width" required>
-            </div>
-
-            <div class="mb-3">
-                <button type="submit" class="button">Save</button>
+                <button type="submit" class="button mb-3">Save</button>
             </div>
 
         </fieldset>
@@ -28,7 +25,7 @@
 
 <p>
     {% if todos %}
-<ul class="list-group">
+<ul class="list-group choice-container">
 
     {% for task in pending_todos %}
     <!-- `task.1` acts like `task[1]` here; the first element is the id,

@@ -9,7 +9,7 @@ a {
 
 body {
   /* background-color: #363535; */
-  background-color: #302f2f;
+  background-color: #08080B;
   color: #F6F8FA;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
@@ -27,31 +27,33 @@ body {
 }
 
 a:any-link {
-    color: #F6F8FA;
+    color: whitesmoke;
 }
 
 .button {
-  background-color: #1a1a1d; 
+  background-color: #4F5057; 
   border: 2px solid #F6F8FA;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #F6F8FA;
   padding: 16px 32px;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 40px;
+  margin: 4px 32px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
 
 .button:hover{
     background-color: #F6F8FA;
-    color: #1a1a1d;
+    color: #4F5057;
 }
 
 input[type="text"] {
     background-color: whitesmoke;
     margin-bottom: 20px;
-    padding: 4px;
+    padding: 4px 8px;
+    margin-left: 34px;
+    border-radius: 10px;
 }
 
 .flex-container {
@@ -70,7 +72,7 @@ ul {
 }
 
 ul li {
-    background-color: #363535;    
+    background-color: #4F5057;    
     cursor: pointer;
     position: relative;
     padding: 8px 2px 12px 40px;
@@ -82,6 +84,7 @@ ul li {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
 }
 
 ul li:hover {
@@ -92,18 +95,21 @@ ul li:hover {
 they're all links!! */
 
 .task {
-    background-color: #969594;
     margin: 12px;
-    border-radius: 12px;
+    border-radius: 10px;
 }
 
 .completed-task {
     text-decoration: line-through;
     text-decoration-color: #302f2f;
     text-decoration-thickness: 8%;
-    background-color: #969594;
     margin: 12px;
-    border-radius: 12px;
+    border-radius: 10px;
+}
+
+.ok {
+    display: flex;
+    justify-content: left;
 }
 
 /* css for the confirm_deletion page */
