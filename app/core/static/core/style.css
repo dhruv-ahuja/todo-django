@@ -8,8 +8,9 @@ a {
 }
 
 body {
-  background-color: #1a1a1d;
-  color: #c3073f;
+  /* background-color: #363535; */
+  background-color: #302f2f;
+  color: #F6F8FA;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   width: 70%;
@@ -26,13 +27,14 @@ body {
 }
 
 a:any-link {
-    color: #c3073f;
+    color: #F6F8FA;
 }
 
 .button {
   background-color: #1a1a1d; 
-  border: 2px solid #c3073f;
-  color: #c3073f;
+  border: 2px solid #F6F8FA;
+  border-radius: 8px;
+  color: #F6F8FA;
   padding: 16px 32px;
   display: inline-block;
   font-size: 16px;
@@ -42,7 +44,7 @@ a:any-link {
 }
 
 .button:hover{
-    background-color: #c3073f;
+    background-color: #F6F8FA;
     color: #1a1a1d;
 }
 
@@ -68,8 +70,7 @@ ul {
 }
 
 ul li {
-    background-color: #4e4e50;
-    color: #dd1451;
+    background-color: #363535;    
     cursor: pointer;
     position: relative;
     padding: 8px 2px 12px 40px;
@@ -87,17 +88,23 @@ ul li:hover {
     background-color: #1a1a1d;
 }
 
+/* the task's text colour is affected by the `a:any-link` property since 
+they're all links!! */
+
 .task {
-    background-color: #4e4e50;
-    color: #dd1451;
+    background-color: #969594;
+    margin: 12px;
+    border-radius: 12px;
 }
 
 .completed-task {
     text-decoration: line-through;
-    background: #23232c;
-    color: #4e4e50;
+    text-decoration-color: #302f2f;
+    text-decoration-thickness: 8%;
+    background-color: #969594;
+    margin: 12px;
+    border-radius: 12px;
 }
-
 
 /* css for the confirm_deletion page */
 .delete-msg {

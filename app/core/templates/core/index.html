@@ -33,7 +33,7 @@
     {% for task in pending_todos %}
     <!-- `task.1` acts like `task[1]` here; the first element is the id,
             the second element is the task itself -->
-    <li class="list-group-item task">
+    <li class="task">
         <a href="{% url 'complete_todo' task.0 %}">
             {{task.1}}
         </a>
@@ -42,7 +42,7 @@
 
     {% for task in completed_todos %}
     <i><s>
-            <li class="list-group-item completed-task">
+            <li class="completed-task">
                 <a href="{% url 'confirm_deletion' task.0 %}">{{task.1}}</a>
             </li>
     </i></s>
