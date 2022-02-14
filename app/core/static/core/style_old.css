@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+}
+
+body {
+  /* background-color: #363535; */
+  background-color: #08080B;
+  color: #F6F8FA;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.title {
+    font-size: xx-large;
+}
+
+.todo-form {
+    font-size: large;
+}
+
+a:any-link {
+    color: whitesmoke;
+}
+
+.button {
+  background-color: #4F5057; 
+  border: 2px solid #F6F8FA;
+  border-radius: 10px;
+  color: #F6F8FA;
+  padding: 16px 32px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 32px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button:hover{
+    background-color: #F6F8FA;
+    color: #4F5057;
+}
+
+input[type="text"] {
+    background-color: whitesmoke;
+    margin-bottom: 20px;
+    padding: 4px 8px;
+    margin-left: 34px;
+    border-radius: 10px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.fill-width {
+    flex: 1;
+}
+
+/* removing margin and padding from unordered list to bring it in-line 
+with the rest of the webpage */
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    background-color: #4F5057;    
+    cursor: pointer;
+    position: relative;
+    padding: 8px 2px 12px 40px;
+    list-style-type: none;
+    transition: 0.4s;    
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+}
+
+ul li:hover {
+    background-color: #1a1a1d;
+}
+
+/* the task's text colour is affected by the `a:any-link` property since 
+they're all links!! */
+
+.task {
+    margin: 12px;
+    border-radius: 10px;
+}
+
+.completed-task {
+    text-decoration: line-through;
+    text-decoration-color: #302f2f;
+    text-decoration-thickness: 8%;
+    margin: 12px;
+    border-radius: 10px;
+}
+
+.ok {
+    display: flex;
+    justify-content: left;
+}
+
+/* css for the confirm_deletion page */
+.delete-msg {
+    font-size: x-large;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+}
