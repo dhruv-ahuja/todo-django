@@ -27,9 +27,23 @@
 
 <body>
     <div class="container">
+
+        {% if request.user.is_authenticated %}
+        <p>{{request.user}}</p>
+        <a href="{% url 'logout' %}">Logout</a>
+
+        {% else %}
+        <!-- only show this link at pages other than the login page itself -->
+        {% if not request.path == "/login" %}
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+        {% endif %}
+
+        <hr>
         <h2>
             <p><a href="{% url 'tasks' %}" class="title">ToDo List</a></p>
         </h2>
+
         <hr>
         {% block content %} {% endblock content %}
     </div>

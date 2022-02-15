@@ -1,7 +1,24 @@
+from audioop import reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView, LogoutView
 
 from .models import Task
+
+
+class UserLoginView(LoginView):
+    template_name = "core/login.html"
+    fields = "__all__"
+    redirect_authenticated_user = True
+
+    def get_success_url(self) -> str:
+        return reverse_lazy("tasks")
+
+
+class UserLogoutView(LogoutView):
+    template_name = "core/logout.html"
+    fields = "__all__"
+    next_page = reverse_lazy("login")
 
 
 class TaskList(ListView):
