@@ -35,13 +35,28 @@ class TaskList(LoginRequiredMixin, ListView):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = "__all__"
+    fields = ["description", "completed"]
     success_url = reverse_lazy("tasks")
 
+    def form_valid(self, form):
+        # this class method is executed when the POSTed form is valid
+        # the data is sent to be saved into the DB.
+        # we set the user here, having excluded it form the form itself
+        # since we don't want user x to be able to post on the behalf of
+        # user y.
+        form.instance.user = self.request.user
+        # and here, we are calling the un-modified form_valid() function defined
+        # by the superclass. this is our own modified version, we add the user
+        # here and then call the original form_valid() to actually store the
+        # task created into the db
+        return super().form_valid(form)
 
+
+# we don't need to modify the form here since the user is already being
+# selected when creating a task above.
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = "__all__"
+    fields = ["description", "completed"]
     success_url = reverse_lazy("tasks")
 
 
