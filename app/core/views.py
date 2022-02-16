@@ -1,8 +1,11 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+import django.views.generic as generic
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
+
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 from .models import Task
 
@@ -11,19 +14,32 @@ class UserLoginView(LoginView):
     template_name = "core/login.html"
     fields = "__all__"
     redirect_authenticated_user = True
-    # success_url = reverse_lazy("tasks")
 
     def get_success_url(self):
         return reverse_lazy("tasks")
 
 
-class UserRegisterView(CreateView):
+# using FormView since that allows us to setup auto-login after form submission
+class UserRegisterView(generic.FormView):
     template_name = "core/register.html"
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
 
+    # if the user is logged in already, then redirect them to the home page
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("tasks")
+        return super().get(self, request, *args, **kwargs)
 
-class TaskList(LoginRequiredMixin, ListView):
+    # auto-login the user after account creation
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super().form_valid(form)
+
+
+class TaskList(LoginRequiredMixin, generic.ListView):
     model = Task
     template_name = "core/home.html"
     context_object_name = "tasks"
@@ -40,7 +56,7 @@ class TaskList(LoginRequiredMixin, ListView):
         return context
 
 
-class TaskCreate(LoginRequiredMixin, CreateView):
+class TaskCreate(LoginRequiredMixin, generic.CreateView):
     model = Task
     fields = ["description", "completed"]
     success_url = reverse_lazy("tasks")
@@ -61,13 +77,13 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
 # we don't need to modify the form here since the user is already being
 # selected when creating a task above.
-class TaskUpdate(LoginRequiredMixin, UpdateView):
+class TaskUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Task
     fields = ["description", "completed"]
     success_url = reverse_lazy("tasks")
 
 
-class TaskDelete(LoginRequiredMixin, DeleteView):
+class TaskDelete(LoginRequiredMixin, generic.DeleteView):
     model = Task
     context_object_name = "task"
     success_url = reverse_lazy("tasks")
