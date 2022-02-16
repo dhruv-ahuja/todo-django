@@ -1,8 +1,8 @@
-from audioop import reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Task
 
@@ -11,9 +11,16 @@ class UserLoginView(LoginView):
     template_name = "core/login.html"
     fields = "__all__"
     redirect_authenticated_user = True
+    # success_url = reverse_lazy("tasks")
 
-    def get_success_url(self) -> str:
+    def get_success_url(self):
         return reverse_lazy("tasks")
+
+
+class UserRegisterView(CreateView):
+    template_name = "core/register.html"
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
 
 
 class TaskList(LoginRequiredMixin, ListView):

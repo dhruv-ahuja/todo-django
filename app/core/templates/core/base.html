@@ -33,8 +33,8 @@
         <a href="{% url 'logout' %}">Logout</a>
 
         {% else %}
-        <!-- only show this link at pages other than the login page itself -->
-        {% if not request.path == "/login" %}
+        <!-- only show this link at pages other than the login and register pages -->
+        {% if request.path != "/login" and request.path != "/register" %}
         <a href="{% url 'login' %}">Login</a>
         {% endif %}
         {% endif %}

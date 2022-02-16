@@ -7,6 +7,7 @@ from .views import *
 urlpatterns = [
     path("login", UserLoginView.as_view(), name="login"),
     path("logout", LogoutView.as_view(next_page="login"), name="logout"),
+    path("register", UserRegisterView.as_view(), name="register"),
     path("", TaskList.as_view(), name="tasks"),
     path("create", TaskCreate.as_view(), name="create_task"),
     path("update/<int:pk>", TaskUpdate.as_view(), name="update_task"),
