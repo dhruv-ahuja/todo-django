@@ -13,7 +13,7 @@
     {% load static %}
     <!-- the last part of the href attribute generates a random timestamp which
     updates the css on each page-reload -->
-    <link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/styles.css' %}?{% now 'U' %}">
 
     <!-- link to the font that we are going to be using -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,25 +27,16 @@
 
 <body>
     <div class="container">
-
-        {% if request.user.is_authenticated %}
-        <p>{{request.user}}</p>
-        <a href="{% url 'logout' %}">Logout</a>
-
-        {% else %}
-        <!-- only show this link at pages other than the login and register pages -->
-        {% if request.path != "/login" and request.path != "/register" %}
-        <a href="{% url 'login' %}">Login</a>
-        {% endif %}
+        {% if not request.path == "/" %}
+        <div class="title-container">
+            <h1>
+                <a href="{% url 'tasks' %}" class="title">ToDo List</a>
+            </h1>
+        </div>
         {% endif %}
 
-        <hr>
-        <h2>
-            <p><a href="{% url 'tasks' %}" class="title">ToDo List</a></p>
-        </h2>
-
-        <hr>
-        {% block content %} {% endblock content %}
+        {% block content %}
+        {% endblock content %}
     </div>
 </body>
 

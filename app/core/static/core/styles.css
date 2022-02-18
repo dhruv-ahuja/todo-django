@@ -1,0 +1,90 @@
+body {
+    background-color: #fafafa;
+    font-family: "Nunito", sans-serif;
+    padding-top: 50px;
+    text-align: center;
+}
+
+a, p {
+    color: #4b5156;
+}
+
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+
+
+.title-container {
+    display: flex; 
+    justify-content: center;
+    /* top right bottom left */
+    padding: 40px 0 40px 0;
+}
+
+.title {
+    text-decoration: none;
+}
+
+/* we are modifying the title added at the home page separately */
+.home-title-container {
+    display: flex; 
+    justify-content: center;
+    /* top right bottom left */
+    padding: 40px 0 20px 0;
+}
+
+.container {
+    max-width: 550px;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.header-bar {
+    display: flex; 
+    /* in space-between, the first item is aligned along the left and the last
+    along the right side */
+    justify-content: space-between;
+    color: #fff;
+    padding: 12px;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+}
+
+.header-bar a {
+    color: #fff; 
+    text-decoration: none;
+}
+
+.count {
+    margin: 0;
+}
+
+.task-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 20px; */
+    background-color: #fff;
+    border-top: 1px solid rgb(226, 226, 226);
+}
+
+.task-description {
+    display: flex;
+    padding: 20px;
+}
+
+.task-description a {
+    text-decoration: none;
+    color: #4b5156;
+    margin-left: 10px;
+}
+
+.delete-link {
+    text-decoration: none;
+}
