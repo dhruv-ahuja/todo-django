@@ -29,12 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.environ["ENV"] == "production":
-#     DEBUG = False
-# elif os.environ["ENV"] == "development":
-#     DEBUG = True
+if os.environ["ENV"] == "production":
+    DEBUG = False
+elif os.environ["ENV"] == "development":
+    DEBUG = True
 
-DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "django-todo00.herokuapp.com"]
 
@@ -142,7 +141,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 # if deployment server (Heroku)
-if os.environ["DATABASE_URL"]:
+if os.environ.get("DATABASE_URL"):
     import dj_database_url
 
     DATABASES = {"default": dj_database_url.config()}
