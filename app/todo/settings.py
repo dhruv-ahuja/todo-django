@@ -139,3 +139,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+
+# if deployment server (Heroku)
+if os.environ["DATABASE_URL"]:
+    import dj_database_url
+
+    DATABASES = {"default": dj_database_url.config()}
